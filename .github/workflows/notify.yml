@@ -1,0 +1,18 @@
+name: Telegram แจ้งเตือน
+
+on:
+  push:
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ส่งข้อความไป Telegram
+        uses: appleboy/telegram-action@master
+        with:
+          token: ${{ secrets.TG_TOKEN }}
+          to: ${{ secrets.TG_CHAT }}
+          message: |
+            📦 มีการแก้ไขไฟล์ใน GitHub แล้ว
+            Repo: ${{ github.repository }}
+            คนแก้: ${{ github.actor }}
